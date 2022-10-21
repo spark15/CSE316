@@ -1,7 +1,7 @@
-const Home = () => {
+const Instruction = () => {
     return (
-        <div>hello</div>
+        <div>Instruction</div>
     );
 };
 
-export default Home;
+export default Instruction;
