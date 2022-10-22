@@ -1,38 +1,173 @@
-.App {
-  text-align: center;
+/* Sungwoong Park, sungwoong.park@stonybrook.edu */
+/* Global CSS Variables: https://www.w3schools.com/css/css3_variables.asp */
+/* Reference these in your CSS to get the same color as the mockups */
+:root {
+  /* --sidebar-width: 240px; */
+  --text-color: rgb(50, 50, 50);
+  --background-color: #ffffff;
+  --light-background-color: #f4f4f4;
+  --nav-bar-color: #ffffff;
+  --selected-color: rgb(229, 241, 253);
+  --action-text-color: #ffffff;
+  --action-color: rgb(58, 99, 197);
+  --border-color: darkgray;
+  /* box-sizing:  content-box; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html {
+  margin-left: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin-left: 20px;
+  font-size: 24px;
+  background: url(Images/SUNYKorea_AcBldg.jpg);
+  overflow-x: hidden;
+  font-family: "Times New Roman", Times, serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.block1 {
+  width: 100%;
+}
+
+.box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: rgb(58, 99, 197);
 }
 
-.App-link {
-  color: #61dafb;
+.block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: rgb(58, 99, 197);
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.item {
+  margin: 10px 10px;
+}
+
+
+label {
+  margin: 10px 10px;
+}
+
+.heading {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.text {
+  background-color: #ACDAE9;
+  white-space: pre-line;
+}
+
+.container {
+  width: 100%;
+  backdrop-filter: blur(30px);
+  margin: 0px 0px;
+}
+
+.topnav {
+  overflow: hidden;
+  float: right;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/*X button*/
+.x {
+  display: none;
+}
+
+.x1 {
+  display: block;
+}
+
+/*button holder*/
+.resnav {
+  width: 50px;
+  height: 50px;
+  display: none;
+  float: right;
+  background-color: #ACDAE9;
+  border-radius: 5px;
+}
+
+/*It will be goine when window is large enough*/
+.resnavbar1 {
+  display: none
+}
+
+.resnavbar a {
+  color:#f2f2f2;
+  margin: 5px 5px;
+  padding: 5px 5px;
+}
+
+.resnavbar1 a {
+  color:#f2f2f2;
+  margin: 5px 5px;
+  padding: 5px 5px;
+}
+
+/*popup when button is clicked*/
+.resnavbar {
+  float: right;
+  display: none;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+/*hamburger button*/
+.ham {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+/*hamburger will be gone*/
+.hel1 {
+  display: none;
+}
+
+/*responsive bar*/
+@media screen and (max-width: 40em) {
+  .topnav {
+    display : none;
   }
-  to {
-    transform: rotate(360deg);
+  .container {
+    display: none;
+  }
+  .resnav {
+    display : block;
+    position: fixed;
+    right :10px;
+  }
+  .resnavbar1 {
+    backdrop-filter: blur(30px);
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    float: right;
+    width: 50%;
+    height: 100%;
   }
 }
