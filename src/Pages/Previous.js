@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
-import Navbar from './navbar'
+import ShortNavBar from './ShortNavBar'
+import '../CSS/Previous.css'
 
 const Previous = () => {
     return (
         <div>
-            <Navbar />
+            <p className="Heading1" style={{ textAlign: "center"}}>CourseMan ={'>'} Search/Register</p>
+            <ShortNavBar />
+<div className="block" >
     <div><p>Check off the courses you have completed with a C or better</p></div>
     <div className="prev" >
         <div className="block">
@@ -89,6 +92,8 @@ const Previous = () => {
     </div>
   
 </div>
+</div>
+
         
     );
 };

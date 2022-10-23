@@ -1,5 +1,6 @@
 .SearchBox {
     width:100%;
+    display: flex;
     background-color:rgb(58, 99, 197);
     padding: 1em;
     border:1px
@@ -10,4 +11,15 @@
     background-color: rgb(58, 99, 197);
     flex-direction: column;
     font-size: 14px;
+}
+
+form {
+    width: 97%;
+}
+
+.item1 {
+    margin: 5px 5px;
+    background-color: #ACDAE9;
+    border-radius: 5px;
+    border: none;
 }
