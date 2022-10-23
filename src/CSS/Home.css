@@ -1,0 +1,13 @@
+.Heading1 {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.break {
+    display: block;
+    margin: 10px 0;
+    line-height:22px;
+    content: " ";
+}
