@@ -1,5 +1,25 @@
 import { Link } from 'react-router-dom';
 import '../CSS/navbar.css'
+function myFunction() {
+    var x = document.getElementById("resnavbar");
+    var y = document.getElementById("thing");
+    var z = document.getElementById("x");
+    if (x.className == "resnavbar") {
+        x.className = "resnavbar1";
+    } else {
+        x.className = "resnavbar";
+    }
+    if (y.className == "hel") {
+        y.className = "hel1";
+    } else {
+        y.className = "hel";
+    }
+    if (z.className == "x") {
+        z.className = "x1";
+    } else {
+        z.className = "x";
+    }
+}
 
 function Navbar() {
     return (
@@ -15,14 +35,17 @@ function Navbar() {
             </div>
 
             <div className="resnavbar" id="resnavbar">
-                <Link to="/">00 Home</Link>
-                <Link to="/instruction">01 Instructions</Link>
-                <Link to="/previous">02 Enter Previous Courses</Link>
-                <Link to="/courses">03 Select Courses</Link>
+                <br></br>
+                <br></br>
+                <br></br>
+                <Link to="/" className="ares">00 Home</Link>
+                <Link to="/instruction" className="ares">01 Instructions</Link>
+                <Link to="/previous" className="ares">02 Enter Previous Courses</Link>
+                <Link to="/courses" className="ares">03 Select Courses</Link>
                 <Link to="/javascript:void(0);" className="icon"></Link>
             </div>
 
-            <button className="resnav">
+            <button className="resnav" onClick={myFunction}>
                 <div className="hel" id="thing">
                     <div className="ham"></div>
                     <div className="ham"></div>
@@ -30,8 +53,8 @@ function Navbar() {
                 </div>
                 <div className="x" id="x">X</div>
             </button>
-        
-    
+            <br className="br"></br>
+            <br className="br"></br>
         </div>
         );
 };

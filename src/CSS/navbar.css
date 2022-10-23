@@ -32,7 +32,8 @@
     width: 50px;
     height: 50px;
     display: none;
-    float: right;
+    position:fixed;
+    z-index: 10;
     background-color: #ACDAE9;
     border-radius: 5px;
   }
@@ -77,6 +78,13 @@
     display: none;
   }
   
+  .ares {
+    text-decoration: none;
+  }
+  .br {
+    display: none;
+  }
+
   /*responsive bar*/
   @media screen and (max-width: 40em) {
     .topnav {
@@ -99,5 +107,8 @@
       float: right;
       width: 50%;
       height: 100%;
+    }
+    .br {
+      display: block;
     }
   }

@@ -7,7 +7,6 @@ const Courses = () => {
         <div>
         <p className="Heading1" style={{ textAlign:"center"}}>CourseMan={'>'}Search/Register</p>
         <ShortNavBar />
-
         <div className="SearchBox">
             <form>
                 <fieldset>
