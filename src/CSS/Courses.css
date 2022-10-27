@@ -8,7 +8,6 @@
 
 .pop {
     display: flex;
-
     background-color: rgb(58, 99, 197);
     flex-direction: column;
     font-size: 14px;

@@ -298,8 +298,10 @@ function Courses() {
 
         <div className="pop" id="courseList">
             <div id="list" />
-            <button style={{display:"none"}}type="button" id="register" onClick={register}>Hello</button>
-        </div>
+            <div>
+            <button style={{display:"none", backgroundColor:"#ACDAE9", border: "none", borderRadius: "5px", marginLeft: "5px", marginRight: "5px", marginTop: "5px", marginBottom: "5px"}} className="reg" type="button" id="register" onClick={register}>Register</button>
+            </div>
+            </div>
         </div>
     );
 };
