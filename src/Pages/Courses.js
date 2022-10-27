@@ -97,15 +97,17 @@ function Courses() {
         document.getElementById("list").style.display = "block";
         document.getElementById("register").style.display = "block";
         list = "";
+        list += "<div className=\"SearchBox\">";
         list += "<p>"+document.getElementById("name").value+" Here are the courses you may select.</p>";
         for (const element of courses) {
            if (element.courseName.includes(document.getElementById("word").value)) {
-              list += "<div>";
+              list += "<div className=\"res\">";
               list += "<input type='checkbox' id='"+ element.courseNumber.substring(3)+"' name='"+ element.courseNumber.substring(3)+"' value='"+ element.courseName +"'>";
               list += "<label for='"+element.courseNumber.substring(3)+"'>"+element.courseNumber+": "+element.courseName+" - "+element.seatsRemaining+" of "+element.capacity+"</label>";
               list += "</div>";
            }
         }
+        list += "</div>";
         document.getElementById("list").innerHTML = list;
         document.getElementById("searchfor").style.display = "none";
         document.getElementById("hide").style.display = "block";
