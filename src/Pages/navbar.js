@@ -26,10 +26,11 @@ function Navbar() {
         <div className = "block1">
             <div className="container">
                 <div className="topnav" id="myTopnav">
-                    <Link to="/courses">03 Select Courses</Link>
-                    <Link to="/previous">02 Enter Previous Courses</Link>
-                    <Link to="/instruction">01 Instructions</Link>
-                    <Link to="/">00 Home</Link>
+                    <Link to="/courses">Select Courses</Link>
+                    <Link to="/previous">Enter Previous Courses</Link>
+                    <Link to="/set" className="ares">Set Student Id</Link>
+                    <Link to="/instruction">Instructions</Link>
+                    <Link to="/">Home</Link>
                     <Link to="/javascript:void(0);" className="icon"></Link>
                 </div>
             </div>
@@ -38,10 +39,11 @@ function Navbar() {
                 <br></br>
                 <br></br>
                 <br></br>
-                <Link to="/" className="ares">00 Home</Link>
-                <Link to="/instruction" className="ares">01 Instructions</Link>
-                <Link to="/previous" className="ares">02 Enter Previous Courses</Link>
-                <Link to="/courses" className="ares">03 Select Courses</Link>
+                <Link to="/" className="ares">Home</Link>
+                <Link to="/instruction" className="ares">Instructions</Link>
+                <Link to="/set" className="ares">Set Student Id</Link>
+                <Link to="/previous" className="ares">Enter Previous Courses</Link>
+                <Link to="/courses" className="ares">Select Courses</Link>
                 <Link to="/javascript:void(0);" className="icon"></Link>
             </div>
 

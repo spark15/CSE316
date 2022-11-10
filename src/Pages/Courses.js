@@ -3,7 +3,7 @@ import ShortNavBar from './ShortNavBar'
 import '../CSS/Courses.css'
 import { useEffect, useRef, useState } from 'react';
 
-function Courses() {
+function Courses(props) {
     var coursesVisible = false;
     var alr = "";
     let previousCourses = [];
