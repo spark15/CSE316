@@ -1,20 +1,23 @@
-var mysql = require('mysql');
-
-var con = mysql.createConnection({
+const express = require('express');
+const mysql = require('mysql');
+const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "12341234",
     database : 'courseman'
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
+const getCourses = express();
 
-con.query('select * from courseman.courses', function (error, results, fields) {
-    if (error) {
-        console.log(error);
-    }
-    console.log(results);
-});
+getCourses.set('port', process.env.PORT || 3000);
+
+getCourses.get('/users',(req,res) => {
+    connection.query('SELECT * from courseman.courses', (error, rows) => {
+        if (error) throw error;
+        res.send(rows);
+    })
+})
+
+getCourses.listen(getCourses.get('port'), () => {
+    console.log('Express server listening on port ' + getCourses.get('port'));
+  });

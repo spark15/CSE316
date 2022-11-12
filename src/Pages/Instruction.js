@@ -1,14 +1,11 @@
-import { Link } from 'react-router-dom';
 import NavBar from './navbar'
-import '../CSS/Instruction.css'
 
 const Instruction = () => {
     return (
         <div>
-            <p style={{ textAlign: "center", fontWeight: "bold", fontSize: "40px", marginTop: "5px", marginBottom: "5px"}}>CourseMan!</p>
+            <p className="Heading1">CourseMan!</p>
             <NavBar />
-            <br className="break"></br>
-            <div className="text" style={{ textAlign: "center"}}>
+            <div className="text" style={{ textAlign: "center", backgroundColor: "#ACDAE9", padding: "10px 10px 10px 10px", display: "flex", width: "100%"}}>
 First, proceed to 'Set Student Id' and enter your 9 digit student id. Click the 'Set Student Id' button to save it.
 <br></br>
 <br></br>

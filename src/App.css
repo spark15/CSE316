@@ -14,12 +14,7 @@
   /* box-sizing:  content-box; */
 }
 
-html {
-  margin-left: 20px;
-}
-
 body {
-  margin-left: 20px;
   font-size: 24px;
   background: url(Images/SUNYKorea_AcBldg.jpg);
   overflow-x: hidden;
@@ -44,4 +39,22 @@ body {
   flex-wrap: wrap;
   background-color: rgb(58, 99, 197);
   width: 100%;
+}
+
+.Heading1 {
+  text-align: center;
+  font-size: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.item {
+  margin: 30px 30px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(58, 99, 197);
 }

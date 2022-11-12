@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
-import ShortNavBar from './ShortNavBar'
 import '../CSS/Courses.css'
+import Navbar from './navbar'
 import { useEffect, useRef, useState } from 'react';
 
-function Courses(props) {
+function Courses({id}) {
     var coursesVisible = false;
     var alr = "";
     let previousCourses = [];
@@ -266,16 +265,19 @@ function Courses(props) {
         }
      alert(alr);
    }
+
     if (previousCourses === null) {
         alert("Please use the Update Courses page to indicate courses you have taken. Then return here.")
      }
     return (
         <div>
         <p className="Heading1" style={{ textAlign:"center"}}>CourseMan={'>'}Search/Register</p>
-        <ShortNavBar />
+        <Navbar />
+        
         <div className="SearchBox">
             <form>
                 <fieldset>
+                  
                     <legend>Search Form</legend>
                     <table>
                         <tbody>
@@ -299,7 +301,7 @@ function Courses(props) {
         <div className="pop" id="courseList">
             <div id="list" />
             <div>
-            <button style={{display:"none", backgroundColor:"#ACDAE9", border: "none", borderRadius: "5px", marginLeft: "5px", marginRight: "5px", marginTop: "5px", marginBottom: "5px"}} className="reg" type="button" id="register" onClick={register}>Register</button>
+            <button style={{display: "none"}} className="reg" type="button" id="register" onClick={register}>Register</button>
             </div>
             </div>
         </div>

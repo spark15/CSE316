@@ -1,109 +1,120 @@
-import { Link } from 'react-router-dom';
-import ShortNavBar from './ShortNavBar'
+import Navbar from './navbar'
 import '../CSS/Previous.css'
 //Sungwoong Park, sungwoong.park@stonybrook.edu
 //this file is about previously taken courses
 var form = document.getElementById("prev");
 
 //when button is clicked, search any classes checked and store on local storage.
-function Previous() {
-    function Handler(e){
-        window.localStorage.clear();
-if (document.getElementById('101').checked) {
-  window.localStorage.setItem('CSE101','true'); 
-} else {
-  window.localStorage.setItem('CSE101','false');
-}
+function Previous(props) {
 
-if (document.getElementById('114').checked) {
-  window.localStorage.setItem('CSE114','true'); 
-} else {
-  window.localStorage.setItem('CSE114','false');
-}
+  function Handler(e){
+    var takenlist = [];
+    if (document.getElementById('101').checked) {
+      takenlist.push({id: 101, taken: true});
+    } else {
+      takenlist.push({id: 101, taken: false});
+    }
 
-if (document.getElementById('214').checked) {
-  window.localStorage.setItem('CSE214','true'); 
-} else {
-  window.localStorage.setItem('CSE214','false');
-}
+    if (document.getElementById('114').checked) {
+      takenlist.push({id: 114, taken: true});
+    } else {
+      takenlist.push({id: 114, taken: true});
+    }
 
-if (document.getElementById('215').checked) {
-  window.localStorage.setItem('CSE215','true'); 
-} else {
-  window.localStorage.setItem('CSE215','false');
-}
+    if (document.getElementById('214').checked) {
+      takenlist.push({id: 214, taken: true});
+    } else {
+      takenlist.push({id: 214, taken: true});
+    }
 
-if (document.getElementById('216').checked) {
-  window.localStorage.setItem('CSE216','true'); 
-} else {
-  window.localStorage.setItem('CSE216','false');
-}
+    if (document.getElementById('215').checked) {
+      takenlist.push({id: 215, taken: true});
+    } else {
+      takenlist.push({id: 215, taken: true});
+    }
 
-if (document.getElementById('220').checked) {
-  window.localStorage.setItem('CSE220','true'); 
-} else {
-  window.localStorage.setItem('CSE220','false');
-}
+    if (document.getElementById('216').checked) {
+      takenlist.push({id: 216, taken: true});
+    } else {
+      takenlist.push({id: 216, taken: true});
+    }
 
-if (document.getElementById('300').checked) {
-  window.localStorage.setItem('CSE300','true'); 
-} else {
-  window.localStorage.setItem('CSE300','false');
-}
+    if (document.getElementById('220').checked) {
+      takenlist.push({id: 220, taken: true});
+    } else {
+      takenlist.push({id: 220, taken: true});
+    }
 
-if (document.getElementById('303').checked) {
-  window.localStorage.setItem('CSE303','true'); 
-} else {
-  window.localStorage.setItem('CSE303','false');
-}
+    if (document.getElementById('300').checked) {
+      takenlist.push({id: 300, taken: true});
+    } else {
+      takenlist.push({id: 300, taken: true});
+    }
 
-if (document.getElementById('305').checked) {
-  window.localStorage.setItem('CSE305','true'); 
-} else {
-  window.localStorage.setItem('CSE305','false');
-}
+    if (document.getElementById('303').checked) {
+      takenlist.push({id: 303, taken: true});
+    } else {
+      takenlist.push({id: 303, taken: true});
+    }
 
-if (document.getElementById('306').checked) {
-  window.localStorage.setItem('CSE306','true'); 
-} else {
-  window.localStorage.setItem('CSE306','false');
-}
+    if (document.getElementById('305').checked) {
+      takenlist.push({id: 305, taken: true});
+    } else {
+      takenlist.push({id: 305, taken: true});
+    }
 
-if (document.getElementById('310').checked) {
-  window.localStorage.setItem('CSE310','true'); 
-} else {
-  window.localStorage.setItem('CSE310','false');
-}
+    if (document.getElementById('306').checked) {
+      takenlist.push({id: 306, taken: true});
+    } else {
+      takenlist.push({id: 306, taken: true});
+    }
 
-if (document.getElementById('312').checked) {
-  window.localStorage.setItem('CSE312','true'); 
-} else {
-  window.localStorage.setItem('CSE312','false');
-}
+    if (document.getElementById('310').checked) {
+      takenlist.push({id: 310, taken: true});
+    } else {
+      takenlist.push({id: 310, taken: true});
+    }
 
-if (document.getElementById('316').checked) {
-  window.localStorage.setItem('CSE316','true'); 
-} else {
-  window.localStorage.setItem('CSE316','false');
-}
+    if (document.getElementById('312').checked) {
+      takenlist.push({id: 312, taken: true});
+    } else {
+      takenlist.push({id: 312, taken: true});
+    }
 
-if (document.getElementById('320').checked) {
-  window.localStorage.setItem('CSE320','true'); 
-} else {
-  window.localStorage.setItem('CSE320','false');
-}
+    if (document.getElementById('316').checked) {
+      takenlist.push({id: 316, taken: true});
+    } else {
+      takenlist.push({id: 316, taken: true});
+    }
 
-if (document.getElementById('416').checked) {
-  window.localStorage.setItem('CSE416','true'); 
-} else {
-  window.localStorage.setItem('CSE416','false');
-}}
+    if (document.getElementById('320').checked) {
+      takenlist.push({id: 320, taken: true});
+    } else {
+      takenlist.push({id: 320, taken: true});
+    }
+
+    if (document.getElementById('416').checked) {
+      takenlist.push({id: 416, taken: true});
+    } else {
+      takenlist.push({id: 416, taken: true});
+    }
+    props.classChanger(takenlist);
+  }
+
+  if (props.id == -1) {
+    alert("Please set student id before proceeding!");
+  }
+  function noRender(){
+
+  }
     return (
         <div>
             <p className="Heading1" style={{ textAlign: "center"}}>CourseMan ={'>'} Search/Register</p>
-            <ShortNavBar />
+            <Navbar />
             <div className="block">
-                <div><p>Check off the courses you have completed with a C or better</p></div>
+              <p className="block" style={{ margin: "0"}}>Student ID: {props.id}</p>
+              <br></br>
+                <div className="block"><p>Check off the courses you have completed with a C or better</p></div>
 
                 <form className="prev" onSubmit={Handler}>
                     <div className="block">
@@ -183,7 +194,7 @@ if (document.getElementById('416').checked) {
                         </div>
                     </div>
 
-                    <button className="item" type="submit" value="Submit" id="courses">Set Previous Courses</button>
+                    <button className="item" type="button" value="Submit" id="courses">Set Previous Courses</button>
                 </form>
             </div>
         </div>
