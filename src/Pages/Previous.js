@@ -1,5 +1,6 @@
 import Navbar from './navbar'
 import '../CSS/Previous.css'
+import { useEffect } from 'react';
 //Sungwoong Park, sungwoong.park@stonybrook.edu
 //this file is about previously taken courses
 var form = document.getElementById("prev");
@@ -100,13 +101,13 @@ function Previous(props) {
     }
     props.classChanger(takenlist);
   }
-
-  if (props.id == -1) {
-    alert("Please set student id before proceeding!");
-  }
-  function noRender(){
-
-  }
+  var form = document.getElementById("prev");
+    console.log(props.id);
+    if (props.id == "-1") {
+      form.style.display = "none";
+    } else {
+      form.style.display = "display";
+    }
     return (
         <div>
             <p className="Heading1" style={{ textAlign: "center"}}>CourseMan ={'>'} Search/Register</p>
@@ -115,8 +116,7 @@ function Previous(props) {
               <p className="block" style={{ margin: "0"}}>Student ID: {props.id}</p>
               <br></br>
                 <div className="block"><p>Check off the courses you have completed with a C or better</p></div>
-
-                <form className="prev" onSubmit={Handler}>
+                <form className="prev" id="prev" onSubmit={Handler} style={{display: "none"}}>
                     <div className="block">
                         <div className="item">
                             <input type="checkbox" id="101" name="101" value="CSE101" />
@@ -196,9 +196,8 @@ function Previous(props) {
 
                     <button className="item" type="button" value="Submit" id="courses">Set Previous Courses</button>
                 </form>
+
+                
             </div>
         </div>
-    );
-};
-
-export default Previous;
+    )}; export default Previous;

@@ -5,53 +5,88 @@ import Courses from './Pages/Courses';
 import Instruction from './Pages/Instruction';
 import Previous from './Pages/Previous';
 import SetStudentId from './Pages/SetStudentId';
-import React, {Component,useState, setState} from 'react';
+import React, {Component,useState, setState, useEffect} from 'react';
 //import getCourses from './api/courseman/getCourses';
 
-class App extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: "-1",
-      previous: [
-        {id: 101, taken: false},
-        {id: 114, taken: false},
-        {id: 214, taken: false},
-        {id: 215, taken: false},
-        {id: 216, taken: false},
-        {id: 220, taken: false},
-        {id: 300, taken: false},
-        {id: 303, taken: false},
-        {id: 304, taken: false},
-        {id: 305, taken: false},
-        {id: 306, taken: false},
-        {id: 310, taken: false},
-        {id: 312, taken: false},
-        {id: 316, taken: false},
-        {id: 320, taken: false},
-        {id: 416, taken: false}
-      ]
-    };
+function App() {
+  const [id, setId] = useState("-1");
+  const [iddb,setIddb] = useState("-1");
+  const [previous, setPrevious] = useState(
+    [
+      {id: 101, taken: false},
+      {id: 114, taken: false},
+      {id: 214, taken: false},
+      {id: 215, taken: false},
+      {id: 216, taken: false},
+      {id: 220, taken: false},
+      {id: 300, taken: false},
+      {id: 303, taken: false},
+      {id: 304, taken: false},
+      {id: 305, taken: false},
+      {id: 306, taken: false},
+      {id: 310, taken: false},
+      {id: 312, taken: false},
+      {id: 316, taken: false},
+      {id: 320, taken: false},
+      {id: 416, taken: false}
+    ]
+  );
+  const [courses, setCourses] = useState({});
+  const [prereq, setPrereq] = useState({});
+  const [transcript, setTranscript] = useState({});
+  const [temp, setTemp] = useState({});
+  
+  function changeId(cid) {
+    fetch('http://localhost:4000/api/courseman/getStudentWith/'+cid)
+    .then((res) => res.json())
+    .then ((data) => {
+      if (data.length == 1){
+        setId(cid);
+      } else {
+        alert("Your Id doesn't exist");
+      }});
+
   };
-  
-  
-  changeId = (cid) => {
-    this.setState({id: cid})
-  }
-  classChanger = (takenlist) => {
-    this.setState({previous: takenlist})
+  function classChanger(takenlist) {
+    setPrevious(takenlist)
   }
 
-  render() {
+  function changeCourses(rdata){
+    setCourses(rdata);
+  }
+  function loadPrereq(rdata) {
+    setPrereq(rdata);
+  }
+  function loadTranscript(rdata) {
+    setPrereq(rdata);
+  }
+  
+  useEffect(() => {
+    fetch('http://localhost:4000/api/courseman/getCourses')
+    .then((res) => res.json())
+    .then((data) => changeCourses(data));
+  }, []);
+  useEffect(() => {
+    fetch('http://localhost:4000/api/courseman/prereqs')
+    .then((res) => res.json())
+    .then((data) => loadPrereq(data));
+  }, []);
+  useEffect(() => {
+    fetch('http://localhost:4000/api/courseman/transcript')
+    .then((res) => res.json())
+    .then((data) => loadTranscript(data));
+  }, []);
+  
+  
     return (
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/courses"  element={<Courses id={this.state.id}/>} />
+        <Route exact path="/" element={<Home courses={courses}/>} />
+        <Route exact path="/courses"  element={<Courses id={id}/>} />
         <Route exact path="/instruction" element={<Instruction />} />
-        <Route exact path="/previous" element={<Previous classChanger= {this.classChanger} id={this.state.id} classes={this.state.previous}/>} />
-        <Route exact path="/set"  element={<SetStudentId changeId={this.changeId}/>} />
+        <Route exact path="/previous" element={<Previous classChanger= {classChanger} id={id} classes={previous}/>} />
+        <Route exact path="/set"  element={<SetStudentId changeId={changeId}/>} />
       </Routes>
-    )};
+    )
 }
 
 export default App;
