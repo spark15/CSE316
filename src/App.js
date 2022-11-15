@@ -6,7 +6,6 @@ import Instruction from './Pages/Instruction';
 import Previous from './Pages/Previous';
 import SetStudentId from './Pages/SetStudentId';
 import React, {Component,useState, setState, useEffect} from 'react';
-//import getCourses from './api/courseman/getCourses';
 
 function App() {
   const [id, setId] = useState("-1");
@@ -43,10 +42,11 @@ function App() {
       if (data[0] != null){
         setIddb(data[0].id);
         setId(data[0].student_id)
+        alert("Your Id has been successfully changed")
       } else {
-        alert("Your id doesn't exist!")
+        alert("Your id doesn't exist on database!")
       }
-    });
+    })
   };
 
   function classChanger(takenlist) {
@@ -60,6 +60,36 @@ function App() {
   function loadPrereq(rdata) {
     setPrereq(rdata);
   }
+
+  function postTranscript(rdata) {
+    for (let i = 0; i < rdata.length; i++) {
+      fetch('http://localhost:4000/api/courseman/postTranscript/'+ iddb+'/' + rdata[i], {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "Test",
+          body: "I am testing!",
+          userId: 1,
+        }),
+      }).then((response) => console.log(response));
+      fetch('http://localhost:4000/api/courseman/getCourses/' + rdata[i], {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "Test",
+          body: "I am testing!",
+          userId: 1,
+        })});
+    }
+    fetch('http://localhost:4000/api/courseman/getCourses')
+    .then((res) => res.json())
+    .then((data) => changeCourses(data));
+  }
+
   function loadTranscript(rdata) {
     setTranscript(rdata);
   }
@@ -68,13 +98,9 @@ function App() {
     fetch('http://localhost:4000/api/courseman/getCourses')
     .then((res) => res.json())
     .then((data) => changeCourses(data));
-  }, []);
-  useEffect(() => {
     fetch('http://localhost:4000/api/courseman/prereqs')
     .then((res) => res.json())
     .then((data) => loadPrereq(data));
-  }, []);
-  useEffect(() => {
     fetch('http://localhost:4000/api/courseman/transcript')
     .then((res) => res.json())
     .then((data) => loadTranscript(data));
@@ -84,7 +110,7 @@ function App() {
     return (
       <Routes>
         <Route exact path="/" element={<Home courses={courses}/>} />
-        <Route exact path="/courses"  element={<Courses id={id} courses={courses} previous={previous} prereq={prereq}/>} />
+        <Route exact path="/courses"  element={<Courses id={id} courses={courses} previous={previous} prereq={prereq} postTranscript={postTranscript}/>} />
         <Route exact path="/instruction" element={<Instruction />} />
         <Route exact path="/previous" element={<Previous classChanger={classChanger} id={id} classes={previous} />} />
         <Route exact path="/set"  element={<SetStudentId changeId={changeId}/>} />

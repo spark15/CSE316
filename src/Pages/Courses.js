@@ -179,15 +179,13 @@ function Courses(props) {
       for (let i = 0; i < returned.length; i++) {
          var hasReq = props.prereq.find(element => element.course_rec_id == returned[i]);
          if (hasReq == null) {
-            alert("NO problem with CSE" + props.previous[returned[i]-1].cid);
             actualreturn.push(returned[i]);
          } else {
             var shouldTaken = hasReq.course_prereq_rec_id;
             if (props.previous[shouldTaken - 1].taken == true){
-               alert("NO problem with CSE" + props.previous[returned[i]-1].cid);
                actualreturn.push(returned[i]);
             } else {
-               alert("You have not made the requirement for " + props.previous[returned[i]-1].cid);
+               alert("CSE" + props.previous[returned[i]-1].cid + "requires CSE" + props.previous[shouldTaken - 1].cid);
                
             }
          }
@@ -196,6 +194,7 @@ function Courses(props) {
      for (let i = 0; i < actualreturn.length; i++) {
       alr += props.courses[actualreturn[i] - 1].course_name + "\n";
      }
+     props.postTranscript(actualreturn);
      alert(alr);
 
    }
@@ -235,7 +234,7 @@ function Courses(props) {
         <div className="pop" id="courseList">
             <div id="list" />
             <div>
-            <button style={{display: "none"}} className="reg" type="button" id="register" onClick={register}>Register</button>
+            <button className="reg" type="button" id="register" onClick={register}>Register</button>
             </div>
             </div>
         </div>

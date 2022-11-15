@@ -1,5 +1,6 @@
 import Navbar from './navbar'
 import '../CSS/Previous.css'
+import { useEffect } from 'react';
 //Sungwoong Park, sungwoong.park@stonybrook.edu
 //this file is about previously taken courses
 var form = document.getElementById("prev");
@@ -99,24 +100,27 @@ function Previous(props) {
       takenlist.push({id: 16, cid: 416, taken: false});
     }
     props.classChanger(takenlist);
+    alert("Your previously taken classes are set!")
   }
 
   var dis = {display: "none"};
+  var is = {display: "block"};
   if (props.id == -1) {
-    alert("Please set student id before proceeding!");
     dis = {display: "none"};
   } else {
     dis = {display: "block"};
   }
+    
+  
 
   return (
     <div>
       <p className="Heading1" style={{ textAlign: "center"}}>CourseMan ={'>'} Search/Register</p>
       <Navbar />
-      <div className="block">
+      <div className="block" style={{alignItems: "center"}}>
         <p className="block" style={{ margin: "0"}}>Student ID: {props.id}</p>
         <br></br>
-        <div className="block"><p>Check off the courses you have completed with a C or better</p></div>
+        <div className="block" style={{textAlign: "center"}}><p style={{textAlign: "center"}}>Check off the courses you have completed with a C or better</p></div>
         <form className="prev" style={dis}>
           <div className="block">
             
@@ -195,8 +199,9 @@ function Previous(props) {
               <label htmlFor="416">CSE 416</label>
             </div>
           </div>
-          <button className="item" onClick={Handler} type="button" value="Submit" id="courses">Set Previous Courses</button>
+          
         </form>
+        <button className="item" style={is} onClick={Handler} type="button" value="Submit" id="courses">Set Previous Courses</button>
       </div>
     </div>
   );

@@ -29,6 +29,7 @@
 
 .reg {
     background-color: #ACDAE9;
+    display: none;
     border: none;
     border-radius: 5px;
     margin-left: 5px;

@@ -21,6 +21,13 @@ app.get('/api/courseman/getCourses',(req,res) => {
     })
 })
 
+app.post('/api/courseman/getCourses/:course',(req,res) => {
+    connection.query('UPDATE courseman.courses set course_seatsremaining=course_seatsremaining-1  where id='+ req.params.course+';', (error, rows) => {
+        if (error) throw error;
+        res.json(rows);
+    })
+})
+
 app.get('/api/courseman/getStudentWith/:id',(req,res) => {
     connection.query('select * FROM courseman.students WHERE student_id ='+req.params.id+';', (error, rows) => {
         if (error) throw error;
@@ -36,19 +43,19 @@ app.get('/api/courseman/prereqs',(req,res) => {
 })
 
 app.get('/api/courseman/transcript',(req,res) => {
-    connection.query('SELECT * from courseman.transcript WHERE student_id ' + req.params.iddb, (error, rows) => {
+    connection.query('SELECT * from courseman.transcript', (error, rows) => {
         if (error) throw error;
         res.json(rows);
     })
 })
 
-app.post('/api/courseman/transcript/:iddb/:course',(req,res) => {
-    connection.query('SELECT * from courseman.transcript WHERE student_id ' + req.params.iddb, (error, rows) => {
+app.post('/api/courseman/postTranscript/:iddb/:course',(req,res) => {
+    connection.query('INSERT INTO courseman.transcript (student_id, course_name) VALUES('+ req.params.iddb+','+req.params.course+') ON DUPLICATE KEY UPDATE student_id="'+req.params.iddb+'", course_name="'+req.params.course+'"', (error, rows) => {
         if (error) throw error;
         res.json(rows);
     })
 })
 
-app.listen(app.get('port'), () => {
+app.listen(4000, () => {
     console.log('Express server listening on port ' + app.get('port'));
   });
