@@ -36,7 +36,14 @@ app.get('/api/courseman/prereqs',(req,res) => {
 })
 
 app.get('/api/courseman/transcript',(req,res) => {
-    connection.query('SELECT * from courseman.transcript', (error, rows) => {
+    connection.query('SELECT * from courseman.transcript WHERE student_id ' + req.params.iddb, (error, rows) => {
+        if (error) throw error;
+        res.json(rows);
+    })
+})
+
+app.post('/api/courseman/transcript/:iddb/:course',(req,res) => {
+    connection.query('SELECT * from courseman.transcript WHERE student_id ' + req.params.iddb, (error, rows) => {
         if (error) throw error;
         res.json(rows);
     })

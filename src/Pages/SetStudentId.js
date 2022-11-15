@@ -21,7 +21,7 @@ function setStudentId (props) {
                                     <p>ID:</p>
                                 </td>
                                 <td>
-                                    <input style={{width: "49%"}}type="textfield" id='id'></input>
+                                    <input style={{width: "49%"}}type="number" id='id'></input>
                                 </td>
                             </tr>
                             <tr>

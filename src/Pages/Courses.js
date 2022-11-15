@@ -2,273 +2,207 @@ import '../CSS/Courses.css'
 import Navbar from './navbar'
 import { useEffect, useRef, useState } from 'react';
 
-function Courses({id}) {
-    var coursesVisible = false;
-    var alr = "";
-    let previousCourses = [];
-    let selected = [];
-    let courses = [
-        { courseNumber: "CSE101", courseName: "Algorithmic Thinking", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE114", courseName: "Introduction to Object Oriented Programming", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE214", courseName: "Data Structures", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE215", courseName: "Foundations of Computer Science", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE216", courseName: "Programing Abstractions", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE220", courseName: "System Fundamentals I", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE303", courseName: "Introduction to the Theory of Computation", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE304", courseName: "Compiler Design", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE305", courseName: "Database Systems", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE306", courseName: "Operating Systems", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE310", courseName: "Computer Networks", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE316", courseName: "Software Development", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE320", courseName: "System Fundamentals II", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE331", courseName: "Computer Security Basics", seatsRemaining: 40, capacity: 40 },
-        { courseNumber: "CSE416", courseName: "Software Engineering", seatsRemaining: 40, capacity: 40 },
-     ];
-     let coursePre = {
-        'CSE101': [],
-        'CSE114': [],
-        'CSE214': ['CSE114'],
-        'CSE215': [],
-        'CSE216': ['CSE214'],
-        'CSE220': ['CSE214'],
-        'CSE300': [],
-        'CSE303': ['CSE214', 'CSE215'],
-        'CSE304': ['CSE216', 'CSE220'],
-        'CSE305': ['CSE216'],
-        'CSE306': ['CSE216', 'CSE320'],
-        'CSE310': ['CSE214', 'CSE220'],
-        'CSE312': [],
-        'CSE316': ['CSE216'],
-        'CSE320': ['CSE220'],
-        'CSE416': ['CSE316']
-    }
-    let list = "";
+function Courses(props) {
+   var coursesVisible = false;
+   var alr = "";
+   var previousCourses = props.previous;;
+   let list = "";
+   var returned = [];
+   var courses = props.courses;
+   var coursePre = props.previous;
    //load local storage and store on previousCourses
-   if (window.localStorage['CSE101'] == 'true') {
-      previousCourses.push('CSE101');
-   } 
-   if (window.localStorage['CSE114'] == 'true') {
-      previousCourses.push('CSE114');
-   }
-   if (window.localStorage['CSE214'] == 'true') {
-      previousCourses.push('CSE214');
-   }
-   if (window.localStorage['CSE215'] == 'true') {
-      previousCourses.push('CSE215');
-   }
-   if (window.localStorage['CSE216'] == 'true') {
-      previousCourses.push('CSE216');
-   }
-   if (window.localStorage['CSE220'] == 'true') {
-      previousCourses.push('CSE220');
-   }
-   if (window.localStorage['CSE300'] == 'true') {
-      previousCourses.push('CSE300');
-   }
-   if (window.localStorage['CSE303'] == 'true') {
-      previousCourses.push('CSE303');
-   }
-   if (window.localStorage['CSE304'] == 'true') {
-      previousCourses.push('CSE304');
-   }
-   if (window.localStorage['CSE305'] == 'true') {
-      previousCourses.push('CSE305');
-   }
-   if (window.localStorage['CSE306'] == 'true') {
-      previousCourses.push('CSE306');
-   }
-   if (window.localStorage['CSE310'] == 'true') {
-      previousCourses.push('CSE310');
-   }
-   if (window.localStorage['CSE316'] == 'true') {
-      previousCourses.push('CSE316');
-   }
-   if (window.localStorage['CSE320'] == 'true') {
-      previousCourses.push('CSE320');
-   }
-   if (window.localStorage['CSE331'] == 'true') {
-      previousCourses.push('CSE331');
-   }
-   if (window.localStorage['CSE416'] == 'true') {
-      previousCourses.push('CSE416');
-   }
-    function search() {
-        document.getElementById("list").style.display = "block";
-        document.getElementById("register").style.display = "block";
-        list = "";
-        list += "<div className=\"SearchBox\">";
-        list += "<p>"+document.getElementById("name").value+" Here are the courses you may select.</p>";
-        for (const element of courses) {
-           if (element.courseName.includes(document.getElementById("word").value)) {
-              list += "<div className=\"res\">";
-              list += "<input type='checkbox' id='"+ element.courseNumber.substring(3)+"' name='"+ element.courseNumber.substring(3)+"' value='"+ element.courseName +"'>";
-              list += "<label for='"+element.courseNumber.substring(3)+"'>"+element.courseNumber+": "+element.courseName+" - "+element.seatsRemaining+" of "+element.capacity+"</label>";
-              list += "</div>";
-           }
-        }
-        list += "</div>";
-        document.getElementById("list").innerHTML = list;
-        document.getElementById("searchfor").style.display = "none";
-        document.getElementById("hide").style.display = "block";
-        
-  
+   
+   function search() {
+      console.log(props.courses);
+      document.getElementById("list").style.display = "block";
+      document.getElementById("register").style.display = "block";
+      list = "";
+      list += "<div className=\"SearchBox\">";
+      list += "<p>"+document.getElementById("name").value+" Here are the courses you may select.</p>";
+      for (let i = 0; i < 16; i++) {
+         if (props.courses[i].course_name.includes(document.getElementById("word").value)) {
+            list += "<div className=\"res\">"; 
+            list += "<input type='checkbox' id='"+ props.courses[i].course_id.substring(3)+"' name='"+ props.courses[i].course_id.substring(3)+"' value='"+ props.courses[i].course_name +"'>";
+            list += "<label for='"+props.courses[i].course_id.substring(3)+"'>"+props.courses[i].course_id+": "+props.courses[i].course_name+" - "+props.courses[i].course_seatsremaining+" of "+props.courses[i].course_capacity+"</label>";
+            list += "</div>";
+         }
       }
-    function hide(){
-            document.getElementById("searchfor").style.display = "block";
-            document.getElementById("hide").style.display = "none";
-            document.getElementById("list").style.display = "none";
-            document.getElementById("register").style.display = "none";
-    }
-    function register() {
-        selected= [];
-        alr="";
-        alr += "Courses Selected:\n";
-        //all of these if statement gathers all class you choose
-        if (document.getElementById('101') != null) {
-           if (document.getElementById('101').checked) {
-              alr += document.getElementById('101').value;
-              selected.push("CSE101");
-              alr += "\n";
-           } 
-        }
+      list += "</div>";
+      document.getElementById("list").innerHTML = list;
+      document.getElementById("searchfor").style.display = "none";
+      document.getElementById("hide").style.display = "block";  
+   }
 
-        if (document.getElementById('114') != null) {
-           if (document.getElementById('114').checked) {
-              alr += document.getElementById('114').value;
-              selected.push("CSE114");
-              alr += "\n";
-           } 
-        }
+   function hide(){
+      document.getElementById("searchfor").style.display = "block";
+      document.getElementById("hide").style.display = "none";
+      document.getElementById("list").style.display = "none";
+      document.getElementById("register").style.display = "none";
+   }
 
-        if (document.getElementById('214') != null) {
-           if (document.getElementById('214').checked) {
-              alr += document.getElementById('214').value;
-              selected.push("CSE214");
-              alr += "\n";
-           } 
-        }
+   function register() {
+      returned = [];
+      alr="";
+      alr += "Courses Selected:\n";
+      //all of these if statement gathers all class you choose
+      if (document.getElementById('101') != null) {
+         if (document.getElementById('101').checked) {
+            alr += document.getElementById('101').value;
+            returned.push("1");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('215') != null) {
-           if (document.getElementById('215').checked) {
-              alr += document.getElementById('215').value;
-              selected.push("CSE215");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('114') != null) {
+         if (document.getElementById('114').checked) {
+            alr += document.getElementById('114').value;
+            returned.push("2");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('216') != null) {
-           if (document.getElementById('216').checked) {
-              alr += document.getElementById('216').value;
-              selected.push("CSE216");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('214') != null) {
+         if (document.getElementById('214').checked) {
+            alr += document.getElementById('214').value;
+            returned.push("3");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('220') != null) {
-           if (document.getElementById('220').checked) {
-              alr += document.getElementById('220').value;
-              selected.push("CSE220");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('215') != null) {
+         if (document.getElementById('215').checked) {
+            alr += document.getElementById('215').value;
+            returned.push("4");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('300') != null) {
+      if (document.getElementById('216') != null) {
+         if (document.getElementById('216').checked) {
+            alr += document.getElementById('216').value;
+            returned.push("5");
+            alr += "\n";
+         } 
+      }
+
+      if (document.getElementById('220') != null) {
+         if (document.getElementById('220').checked) {
+            alr += document.getElementById('220').value;
+            returned.push("6");
+            alr += "\n";
+         } 
+      }
+
+      if (document.getElementById('300') != null) {
            if (document.getElementById('300').checked) {
               alr += document.getElementById('300').value;
-              selected.push("CSE300");
+              returned.push("7");
               alr += "\n";
            } 
-        }
+      }
 
-        if (document.getElementById('303') != null) {
-           if (document.getElementById('303').checked) {
-              alr += document.getElementById('303').value;
-              selected.push("CSE303");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('303') != null) {
+         if (document.getElementById('303').checked) {
+            alr += document.getElementById('303').value;
+            returned.push("8");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('304') != null) {
-           if (document.getElementById('304').checked) {
-              alr += document.getElementById('304').value;
-              selected.push("CSE304");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('304') != null) {
+         if (document.getElementById('304').checked) {
+            alr += document.getElementById('304').value;
+            returned.push("9");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('305') != null) {
-           if (document.getElementById('305').checked) {
-              alr += document.getElementById('305').value;
-              selected.push("CSE305");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('305') != null) {
+         if (document.getElementById('305').checked) {
+            alr += document.getElementById('305').value;
+            returned.push("10");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('306') != null) {
-           if (document.getElementById('306').checked) {
-              alr += document.getElementById('306').value;
-              selected.push("CSE306");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('306') != null) {
+         if (document.getElementById('306').checked) {
+            alr += document.getElementById('306').value;
+            returned.push("11");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('310') != null) {
-           if (document.getElementById('310').checked) {
-              alr += document.getElementById('310').value;
-              selected.push("CSE310");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('310') != null) {
+         if (document.getElementById('310').checked) {
+            alr += document.getElementById('310').value;
+            returned.push("12");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('312') != null) {
-           if (document.getElementById('312').checked) {
-              alr += document.getElementById('312').value;
-              selected.push("CSE312");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('312') != null) {
+         if (document.getElementById('312').checked) {
+            alr += document.getElementById('312').value;
+            returned.push("13");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('316') != null) {
-           if (document.getElementById('316').checked) {
-              alr += document.getElementById('316').value;
-              selected.push("CSE316");
-              alr += "\n";
-           } 
-        }
+      if (document.getElementById('316') != null) {
+         if (document.getElementById('316').checked) {
+            alr += document.getElementById('316').value;
+            returned.push("14");
+            alr += "\n";
+         } 
+      }
 
-        if (document.getElementById('320') != null) {
-           if (document.getElementById('320').checked) {
-              alr += document.getElementById('320').value;
-              selected.push("CSE320");
-              alr += "\n";
-           }
-        }
-        if (document.getElementById('416') != null) {
-           if (document.getElementById('416').checked) {
-              alr += document.getElementById('416').value;
-              selected.push("CSE416");
-              alr += "\n";
-           }
-        }
-        //if chosen class has untaken classes, change alr.
-        for (const element of selected) {
-           const prereq = coursePre[element];
-           for (const x of prereq) {
-              if (previousCourses.includes(x)) {
+      if (document.getElementById('320') != null) {
+         if (document.getElementById('320').checked) {
+            alr += document.getElementById('320').value;
+            returned.push("15");
+            alr += "\n";
+         }
+      }
 
-              } else {
-                 alr = element +" requires "+ x;
-                 break;
-              }
-           }
+      if (document.getElementById('416') != null) {
+         if (document.getElementById('416').checked) {
+            alr += document.getElementById('416').value;
+            returned.push("16");
+            alr += "\n";
+         }
+      }
 
+      var actualreturn = [];
+      //if chosen class has untaken previous classes, change alr.
+      
+      for (let i = 0; i < returned.length; i++) {
+         var hasReq = props.prereq.find(element => element.course_rec_id == returned[i]);
+         if (hasReq == null) {
+            alert("NO problem with CSE" + props.previous[returned[i]-1].cid);
+            actualreturn.push(returned[i]);
+         } else {
+            var shouldTaken = hasReq.course_prereq_rec_id;
+            if (props.previous[shouldTaken - 1].taken == true){
+               alert("NO problem with CSE" + props.previous[returned[i]-1].cid);
+               actualreturn.push(returned[i]);
+            } else {
+               alert("You have not made the requirement for " + props.previous[returned[i]-1].cid);
+               
+            }
+         }
         }
+     alr="Courses Selected:\n";
+     for (let i = 0; i < actualreturn.length; i++) {
+      alr += props.courses[actualreturn[i] - 1].course_name + "\n";
+     }
      alert(alr);
+
    }
 
-    if (previousCourses === null) {
+   if (previousCourses === null) {
         alert("Please use the Update Courses page to indicate courses you have taken. Then return here.")
-     }
+   }
     return (
         <div>
         <p className="Heading1" style={{ textAlign:"center"}}>CourseMan={'>'}Search/Register</p>
