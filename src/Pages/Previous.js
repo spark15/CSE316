@@ -107,6 +107,7 @@ function Previous(props) {
   var is = {display: "block"};
   if (props.id == -1) {
     dis = {display: "none"};
+    alert("Please set student Id before proceeding!")
   } else {
     dis = {display: "block"};
   }
