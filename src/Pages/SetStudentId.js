@@ -26,7 +26,7 @@ function setStudentId (props) {
                             </tr>
                             <tr>
                                 <td>
-                                <button className="reg" type='button' onClick={handleEvent}>Set Student Id</button>
+                                <button className="setId" type='button' onClick={handleEvent}>Set Student Id</button>
                                 </td>
                             </tr>
                         </tbody>
