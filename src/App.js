@@ -1,14 +1,22 @@
 import './App.css';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home';
 import Courses from './Pages/Courses';
 import Instruction from './Pages/Instruction';
 import Previous from './Pages/Previous';
-import SetStudentId from './Pages/SetStudentId';
-import React, {Component,useState, setState, useEffect} from 'react';
+import Login from './Pages/Login';
+import React, {useState, useEffect} from 'react';
+import { hashutil } from './hashutil.mjs';
 
 function App() {
   const [id, setId] = useState("-1");
+  const [profile, setProfile] = useState({
+    id: "-1",
+    fname: "",
+    lname: "",
+    level: ""
+  })
+
   const [iddb, setIddb] = useState("-1");
   const [previous, setPrevious] = useState(
     [
@@ -35,14 +43,19 @@ function App() {
   const [transcript, setTranscript] = useState({});
   const [temp, setTemp] = useState({});
 
-  function changeId(cid) {
+  function changeId(cid, pwd) {
     fetch('http://localhost:4000/api/courseman/getStudentWith/'+cid)
     .then((res) => res.json())
     .then((data)=>{
       if (data[0] != null){
-        setIddb(data[0].id);
-        setId(data[0].student_id)
-        alert("Your Id has been successfully changed")
+        console.log(hashutil(data[0].first_name, data[0].last_name, pwd));
+        if (hashutil(data[0].first_name, data[0].last_name, pwd) == data[0].password) {
+          setIddb(data[0].id);
+          setId(data[0].student_id)
+          alert("Your Id has been successfully changed")
+        } else {
+          alert("Your password is wrong!");
+        }
       } else {
         alert("Your id doesn't exist on database!")
       }
@@ -113,7 +126,7 @@ function App() {
         <Route exact path="/courses"  element={<Courses id={id} courses={courses} previous={previous} prereq={prereq} postTranscript={postTranscript}/>} />
         <Route exact path="/instruction" element={<Instruction />} />
         <Route exact path="/previous" element={<Previous classChanger={classChanger} id={id} classes={previous} />} />
-        <Route exact path="/set"  element={<SetStudentId changeId={changeId}/>} />
+        <Route exact path="/login"  element={<Login changeId={changeId}/>} />
       </Routes>
     )
 }

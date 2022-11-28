@@ -42,3 +42,5 @@ export function hashutil(fname, lname, password) {
     }
     return passouthash;
   }
+
+  //console.log(hashutil("Sungwoong","Park","113044922"));

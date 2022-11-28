@@ -28,7 +28,7 @@ function Navbar() {
                 <div className="topnav" id="myTopnav">
                     <Link to="/">Home</Link>
                     <Link to="/instruction">Instructions</Link>
-                    <Link to="/set" className="ares">Set Student Id</Link>
+                    <Link to="/login" className="ares">Login</Link>
                     <Link to="/previous">Enter Previous Courses</Link>
                     <Link to="/courses">Select Courses</Link>
                     <Link to="/javascript:void(0);" className="icon"></Link>
@@ -41,7 +41,7 @@ function Navbar() {
                 <br></br>
                 <Link to="/" className="ares">Home</Link>
                 <Link to="/instruction" className="ares">Instructions</Link>
-                <Link to="/set" className="ares">Set Student Id</Link>
+                <Link to="/login" className="ares">Login</Link>
                 <Link to="/previous" className="ares">Enter Previous Courses</Link>
                 <Link to="/courses" className="ares">Select Courses</Link>
                 <Link to="/javascript:void(0);" className="icon"></Link>
