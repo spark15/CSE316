@@ -48,7 +48,6 @@ function App() {
     .then((res) => res.json())
     .then((data)=>{
       if (data[0] != null){
-        console.log(hashutil(data[0].first_name, data[0].last_name, pwd));
         if (hashutil(data[0].first_name, data[0].last_name, pwd) == data[0].password) {
           setIddb(data[0].id);
           setId(data[0].student_id)

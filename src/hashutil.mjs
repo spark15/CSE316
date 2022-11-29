@@ -16,8 +16,6 @@ var highbit = function(value) {
 // and returned.
 export function hashutil(fname, lname, password) {
     let salt = fname + lname;
-    console.log("|"+salt+"|");
-    console.log("|"+password+"|");
 
     const passhash = sha256(salt + password);
 
