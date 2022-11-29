@@ -10,13 +10,6 @@ import { hashutil } from './hashutil.mjs';
 
 function App() {
   const [id, setId] = useState("-1");
-  const [profile, setProfile] = useState({
-    id: "-1",
-    fname: "",
-    lname: "",
-    level: ""
-  })
-
   const [iddb, setIddb] = useState("-1");
   const [previous, setPrevious] = useState(
     [
@@ -41,7 +34,6 @@ function App() {
   const [courses, setCourses] = useState({});
   const [prereq, setPrereq] = useState({});
   const [transcript, setTranscript] = useState({});
-  const [temp, setTemp] = useState({});
 
   function changeId(cid, pwd) {
     fetch('http://localhost:4000/api/courseman/getStudentWith/'+cid)
