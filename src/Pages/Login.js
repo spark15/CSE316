@@ -36,7 +36,7 @@ function login (props) {
                             </tr>
                             <tr>
                                 <td>
-                                <button className="setId" type='button' onClick={handleEvent}>Set Student Id</button>
+                                <button className="setId" type='button' onClick={handleEvent}>Login</button>
                                 </td>
                             </tr>
                         </tbody>
