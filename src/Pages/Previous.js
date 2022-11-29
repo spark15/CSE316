@@ -17,7 +17,6 @@ function Previous(props) {
         takenlist.push({id:i+1, cid: props.classes[i].cid, taken: false});
       }
     }
-    console.log(takenlist);
     props.classChanger(takenlist);
     alert("Your previously taken classes are set!")
   }
@@ -82,6 +81,11 @@ function Previous(props) {
             <div className="item">
               <input type="checkbox" id="303" name="303" value="CSE303" />
               <label htmlFor="303">CSE 303</label>
+            </div>
+
+            <div className="item">
+              <input type="checkbox" id="304" name="304" value="CSE304" />
+              <label htmlFor="304">CSE 304</label>
             </div>
         
             <div className="item">
