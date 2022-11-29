@@ -77,21 +77,11 @@ function App() {
           body: "I am testing!",
           userId: 1,
         }),
-      }).then((response) => console.log(response));
-      fetch('http://localhost:4000/api/courseman/getCourses/' + rdata[i], {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: "Test",
-          body: "I am testing!",
-          userId: 1,
-        })});
+      })
     }
-    fetch('http://localhost:4000/api/courseman/getCourses')
+    fetch('http://localhost:4000/api/courseman/transcript')
     .then((res) => res.json())
-    .then((data) => changeCourses(data));
+    .then((data) => loadTranscript(data));
   }
 
   function loadTranscript(rdata) {

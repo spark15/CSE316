@@ -60,25 +60,46 @@ function Courses(props) {
       //if chosen class has untaken previous classes, change alr.
       
       for (let i = 0; i < returned.length; i++) {
-         var hasReq = props.prereq.find(element => element.course_rec_id == returned[i]);
-         if (hasReq == null) {
-            actualreturn.push(returned[i]);
-         } else {
-            var shouldTaken = hasReq.course_prereq_rec_id;
-         if (props.previous[shouldTaken - 1].taken == true){
-            actualreturn.push(returned[i]);
-         } else {
-            alert("CSE" + props.previous[returned[i]-1].cid + " requires CSE" + props.previous[shouldTaken - 1].cid);
-         }}
-      }
+         var hasReq = -1;
+         var req = "";
+         for (let j = 0; j < props.courses.length; j++) {
+            if (props.courses[j].course_id == returned[i]) {
+               hasReq = props.courses[j].id;
+               break;
+            }
+         }
+         if (hasReq != -1) {
+            for (let j = 0; j < props.prereq.length; j++) {
+               if (props.prereq[j].course_rec_id == hasReq) {
+                  hasReq = props.prereq[j].course_prereq_rec_id;
+                  req = props.courses[hasReq - 1].course_id.substring(3);
+                  if (req == null) {
+                     break;
+                  } else {
+                     for ( let k = 0; k < props.previous.length; k++) {
+                        if (props.previous[k].cid == req) {
+                           if (props.previous[k].taken == true) {
+                              actualreturn.push(returned[i]);
+                           } else {
+                              alert(returned[i] + " requires CSE" + req);
+                           }
+                        } 
+                     }
+                  }
+                  
+               }
+            }
+            if (req == "") {
+               actualreturn.push(returned[i]);
+            }
+         }
+         }
+      
       
      alr="Courses Selected:\n";
+     console.log(actualreturn);
      for (let i = 0; i < actualreturn.length; i++) {
-      for (let j = 0; j < props.courses.length; j++) {
-         if (actualreturn[i] == props.courses[j].course_id) {
-            alr+= props.courses[j].course_id;
-         }
-      }
+      alr += actualreturn[i] + "\n";
    }
      props.postTranscript(actualreturn);
      alert(alr);
