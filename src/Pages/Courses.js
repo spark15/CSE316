@@ -19,11 +19,18 @@ function Courses(props) {
       list = "";
       list += "<div className=\"SearchBox\">";
       list += "<p>"+document.getElementById("name").value+" Here are the courses you may select.</p>";
+      console.log(props.transcript);
       for (let i = 0; i < 16; i++) {
          if (props.courses[i].course_name.includes(document.getElementById("word").value)) {
+            var seats = props.courses[i].course_capacity;
+            for ( let j = 0; j < props.transcript.length; j++) {
+               if (props.transcript[j].course_name == props.courses[i].course_id) {
+                  seats-=1;
+               }
+            }
             list += "<div className=\"res\">"; 
             list += "<input type='checkbox' id='"+ props.courses[i].course_id.substring(3)+"' name='"+ props.courses[i].course_id.substring(3)+"' value='"+ props.courses[i].course_name +"'>";
-            list += "<label for='"+props.courses[i].course_id.substring(3)+"'>"+props.courses[i].course_id+": "+props.courses[i].course_name+" - "+props.courses[i].course_seatsremaining+" of "+props.courses[i].course_capacity+"</label>";
+            list += "<label for='"+props.courses[i].course_id.substring(3)+"'>"+props.courses[i].course_id+": "+props.courses[i].course_name+" - "+seats+" of "+props.courses[i].course_capacity+"</label>";
             list += "</div>";
          }
       }

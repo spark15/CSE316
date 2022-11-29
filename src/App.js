@@ -104,7 +104,7 @@ function App() {
     return (
       <Routes>
         <Route exact path="/" element={<Home courses={courses}/>} />
-        <Route exact path="/courses"  element={<Courses id={id} courses={courses} previous={previous} prereq={prereq} postTranscript={postTranscript}/>} />
+        <Route exact path="/courses"  element={<Courses transcript={transcript} id={id} courses={courses} previous={previous} prereq={prereq} postTranscript={postTranscript}/>} />
         <Route exact path="/instruction" element={<Instruction />} />
         <Route exact path="/previous" element={<Previous classChanger={classChanger} id={id} classes={previous} />} />
         <Route exact path="/login"  element={<Login changeId={changeId}/>} />
