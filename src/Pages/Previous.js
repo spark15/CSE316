@@ -9,96 +9,15 @@ function Previous(props) {
 
   //return taken courses list  to previous in App.js
   function Handler(e){
-    var takenlist = [];
-    if (document.getElementById('101').checked) {
-      takenlist.push({id:1, cid: 101, taken: true});
-    } else {
-      takenlist.push({id:1, cid: 101, taken: false});
+    var takenlist= [];
+    for (var i = 0; i < props.classes.length; i++) {
+      if (document.getElementById(props.classes[i].cid).checked) {
+        takenlist.push({id:i+1, cid: props.classes[i].cid, taken: true});
+      } else {
+        takenlist.push({id:i+1, cid: props.classes[i].cid, taken: false});
+      }
     }
-
-    if (document.getElementById('114').checked) {
-      takenlist.push({id: 2, cid: 114, taken: true});
-    } else {
-      takenlist.push({id: 2, cid: 114, taken: false});
-    }
-
-    if (document.getElementById('214').checked) {
-      takenlist.push({id: 3, cid: 214, taken: true});
-    } else {
-      takenlist.push({id: 3, cid: 214, taken: false});
-    }
-
-    if (document.getElementById('215').checked) {
-      takenlist.push({id: 4, cid: 215, taken: true});
-    } else {
-      takenlist.push({id: 4, cid: 215, taken: false});
-    }
-
-    if (document.getElementById('216').checked) {
-      takenlist.push({id: 5, cid: 216, taken: true});
-    } else {
-      takenlist.push({id: 5, cid: 216, taken: false});
-    }
-
-    if (document.getElementById('220').checked) {
-      takenlist.push({id: 6, cid: 220, taken: true});
-    } else {
-      takenlist.push({id: 6, cid: 220, taken: false});
-    }
-
-    if (document.getElementById('300').checked) {
-      takenlist.push({id: 7, cid: 300, taken: true});
-    } else {
-      takenlist.push({id: 7, cid: 300, taken: false});
-    }
-
-    if (document.getElementById('303').checked) {
-      takenlist.push({id: 8, cid: 303, taken: true});
-    } else {
-      takenlist.push({id: 8, cid: 303, taken: false});
-    }
-
-    if (document.getElementById('305').checked) {
-      takenlist.push({id: 10, cid: 305, taken: true});
-    } else {
-      takenlist.push({id: 10, cid: 305, taken: false});
-    }
-
-    if (document.getElementById('306').checked) {
-      takenlist.push({id: 11, cid: 306, taken: true});
-    } else {
-      takenlist.push({id: 11, cid: 306, taken: false});
-    }
-
-    if (document.getElementById('310').checked) {
-      takenlist.push({id: 12, cid: 310, taken: true});
-    } else {
-      takenlist.push({id: 12, cid: 310, taken: false});
-    }
-
-    if (document.getElementById('312').checked) {
-      takenlist.push({id: 13, cid: 312, taken: true});
-    } else {
-      takenlist.push({id: 13, cid: 312, taken: false});
-    }
-
-    if (document.getElementById('316').checked) {
-      takenlist.push({id: 14, cid: 316, taken: true});
-    } else {
-      takenlist.push({id: 14, cid: 316, taken: false});
-    }
-
-    if (document.getElementById('320').checked) {
-      takenlist.push({id: 15, cid: 320, taken: true});
-    } else {
-      takenlist.push({id: 15, cid: 320, taken: false});
-    }
-
-    if (document.getElementById('416').checked) {
-      takenlist.push({id: 16, cid: 416, taken: true});
-    } else {
-      takenlist.push({id: 16, cid: 416, taken: false});
-    }
+    console.log(takenlist);
     props.classChanger(takenlist);
     alert("Your previously taken classes are set!")
   }
