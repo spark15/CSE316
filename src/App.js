@@ -67,7 +67,7 @@ function App() {
 
   function postTranscript(rdata) {
     for (let i = 0; i < rdata.length; i++) {
-      fetch('http://localhost:4000/api/courseman/postTranscript/'+ iddb+'/' + rdata[i], {
+      fetch('http://localhost:4000/api/courseman/postTranscript/'+ id+'/' + rdata[i], {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
