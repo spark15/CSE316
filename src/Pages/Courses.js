@@ -45,134 +45,17 @@ function Courses(props) {
       alr="";
       alr += "Courses Selected:\n";
       //all of these if statement gathers all class you choose
-      if (document.getElementById('101') != null) {
-         if (document.getElementById('101').checked) {
-            alr += document.getElementById('101').value;
-            returned.push("1");
-            alr += "\n";
-         } 
-      }
+      for (var i = 0; i < props.courses.length; i++) {
 
-      if (document.getElementById('114') != null) {
-         if (document.getElementById('114').checked) {
-            alr += document.getElementById('114').value;
-            returned.push("2");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('214') != null) {
-         if (document.getElementById('214').checked) {
-            alr += document.getElementById('214').value;
-            returned.push("3");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('215') != null) {
-         if (document.getElementById('215').checked) {
-            alr += document.getElementById('215').value;
-            returned.push("4");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('216') != null) {
-         if (document.getElementById('216').checked) {
-            alr += document.getElementById('216').value;
-            returned.push("5");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('220') != null) {
-         if (document.getElementById('220').checked) {
-            alr += document.getElementById('220').value;
-            returned.push("6");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('300') != null) {
-           if (document.getElementById('300').checked) {
-              alr += document.getElementById('300').value;
-              returned.push("7");
-              alr += "\n";
-           } 
-      }
-
-      if (document.getElementById('303') != null) {
-         if (document.getElementById('303').checked) {
-            alr += document.getElementById('303').value;
-            returned.push("8");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('304') != null) {
-         if (document.getElementById('304').checked) {
-            alr += document.getElementById('304').value;
-            returned.push("9");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('305') != null) {
-         if (document.getElementById('305').checked) {
-            alr += document.getElementById('305').value;
-            returned.push("10");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('306') != null) {
-         if (document.getElementById('306').checked) {
-            alr += document.getElementById('306').value;
-            returned.push("11");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('310') != null) {
-         if (document.getElementById('310').checked) {
-            alr += document.getElementById('310').value;
-            returned.push("12");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('312') != null) {
-         if (document.getElementById('312').checked) {
-            alr += document.getElementById('312').value;
-            returned.push("13");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('316') != null) {
-         if (document.getElementById('316').checked) {
-            alr += document.getElementById('316').value;
-            returned.push("14");
-            alr += "\n";
-         } 
-      }
-
-      if (document.getElementById('320') != null) {
-         if (document.getElementById('320').checked) {
-            alr += document.getElementById('320').value;
-            returned.push("15");
-            alr += "\n";
+         if (document.getElementById(props.courses[i].course_id.substring(3)).checked != null) {
+            if (document.getElementById(props.courses[i].course_id.substring(3)).checked) {
+               alr += document.getElementById(props.courses[i].course_id.substring(3)).value;
+               returned.push(props.courses[i].course_id);
+               alr += "\n";
+            }
          }
-      }
-
-      if (document.getElementById('416') != null) {
-         if (document.getElementById('416').checked) {
-            alr += document.getElementById('416').value;
-            returned.push("16");
-            alr += "\n";
-         }
-      }
-
+       }
+      
       var actualreturn = [];
       //if chosen class has untaken previous classes, change alr.
       
@@ -182,18 +65,21 @@ function Courses(props) {
             actualreturn.push(returned[i]);
          } else {
             var shouldTaken = hasReq.course_prereq_rec_id;
-            if (props.previous[shouldTaken - 1].taken == true){
-               actualreturn.push(returned[i]);
-            } else {
-               alert("CSE" + props.previous[returned[i]-1].cid + "requires CSE" + props.previous[shouldTaken - 1].cid);
-               
-            }
-         }
-        }
+         if (props.previous[shouldTaken - 1].taken == true){
+            actualreturn.push(returned[i]);
+         } else {
+            alert("CSE" + props.previous[returned[i]-1].cid + " requires CSE" + props.previous[shouldTaken - 1].cid);
+         }}
+      }
+      
      alr="Courses Selected:\n";
      for (let i = 0; i < actualreturn.length; i++) {
-      alr += props.courses[actualreturn[i] - 1].course_name + "\n";
-     }
+      for (let j = 0; j < props.courses.length; j++) {
+         if (actualreturn[i] == props.courses[j].course_id) {
+            alr+= props.courses[j].course_id;
+         }
+      }
+   }
      props.postTranscript(actualreturn);
      alert(alr);
 
